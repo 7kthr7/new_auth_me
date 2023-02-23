@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Spot extends Model {
+  class Review extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,61 +11,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.belongsTo(models.User, { foreignKey: 'ownerId' });
+      Review.belongsTo(models.User, { foreignKey: 'userId' });
+
+      Review.belongsTo(models.Spot, { foreignKey: 'spotId' });
+
     }
   }
-  Spot.init({
-    id: {
+  Review.init({
+
+    spotId: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
       allowNull: false
     },
-    ownerId: {
+    userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
-    address: {
+    review: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    country: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    lat: {
-      type:DataTypes.FLOAT,
-      allowNull: false
-    },
-    lng: {
-      type:DataTypes.FLOAT,
-      allowNull: false
-    },
-    name: {
-      type:DataTypes.STRING,
-      allowNull: false
-    },
-    description: {
-      type:DataTypes.STRING,
-      allowNull: false
-    },
-    price: {
-      type:DataTypes.FLOAT,
-      allowNull: false
+    stars: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
+        min: 0,
+        max: 5
+      }
     }
-  }, 
-  
-  {
+  }, {
     sequelize,
-    modelName: 'Spot',
+    modelName: 'Review',
   });
-  return Spot;
+  return Review;
 };
