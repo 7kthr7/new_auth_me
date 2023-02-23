@@ -20,6 +20,10 @@ const handleValidationErrors = (req, _res, next) => {
     }
     next();
   };
+
+  const validateSpot = [
+    
+  ]
   
   module.exports = {
     handleValidationErrors
