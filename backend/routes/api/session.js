@@ -40,7 +40,13 @@ router.post(
       await setTokenCookie(res, user);
   
       return res.json({
-        user: user
+        'user': {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username
+        }
       });
     }
   );
@@ -55,6 +61,8 @@ router.delete(
     }
   );
 
+  //restore session user
+
   router.get(
     '/',
     restoreUser,
@@ -62,7 +70,14 @@ router.delete(
       const { user } = req;
       if (user) {
         return res.json({
-          user: user.toSafeObject()
+          'user': {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username
+
+          }
         });
       } else return res.json({ user: null });
     }
