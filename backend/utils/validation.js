@@ -24,6 +24,22 @@ const handleValidationErrors = (req, _res, next) => {
   const validateSpot = [
     
   ]
+
+  const validateSpotImage = [ 
+
+  ]
+
+  const validateReview = [
+
+  ]
+
+  const validateReviewImage = [
+
+  ]
+
+  const validateQuery = [
+
+  ]
   
   module.exports = {
     handleValidationErrors
