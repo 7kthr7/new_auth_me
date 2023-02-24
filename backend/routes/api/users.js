@@ -39,6 +39,7 @@ router.post("/", validateSignup, async (req, res) => {
       (err.statusCode = 403),
       (err.errors = ["User with that username already exists"]);
 
+
     return next(err);
   }
 
@@ -86,5 +87,9 @@ router.post("/", validateSignup, async (req, res) => {
     },
   });
 });
+
+
+
+
 
 module.exports = router;
